@@ -10,16 +10,36 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var menuLbl: UIButton!
+    
+    @IBOutlet var itemsLbl: [UIButton]!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
 
+    
 }
 
+    @IBAction func menuTapped(_ sender: UIButton) {
+        itemsLbl.forEach { (button) in
+            UIView.animate(withDuration: 0.5, animations: {
+             button.isHidden = !button.isHidden
+                self.view.layoutIfNeeded()
+            })
+            
+        }
+    }
+    
+    @IBAction func ItemTapped(_ sender: UIButton) {
+        menuLbl.titleLabel?.text = sender.titleLabel?.text
+        
+        itemsLbl.forEach { (button) in
+            UIView.animate(withDuration: 0.5, animations: {
+                button.isHidden = !button.isHidden
+                self.view.layoutIfNeeded()
+            })
+            
+        }
+    }
+    
+}
